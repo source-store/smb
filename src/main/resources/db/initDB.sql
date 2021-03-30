@@ -19,8 +19,10 @@ CREATE UNIQUE INDEX users_unique_email_idx ON smb_users (login);
 
 CREATE TABLE smb_subscribers
 (
-    user_id          INTEGER NOT NULL,
-    tablename        VARCHAR NOT NULL,
+    user_id          INTEGER  NOT NULL,
+    tablename        VARCHAR  NOT NULL,
+    starttime        TIME DEFAULT NULL,
+    endtime          TIME DEFAULT NULL,
     CONSTRAINT smb_subscribers_idx UNIQUE (user_id, tablename),
     FOREIGN KEY (user_id) REFERENCES smb_users (id) ON DELETE CASCADE
 );
@@ -29,6 +31,8 @@ CREATE TABLE smb_publishers
 (
     user_id          INTEGER NOT NULL,
     tablename        VARCHAR NOT NULL,
+    starttime        TIME DEFAULT NULL,
+    endtime          TIME DEFAULT NULL,
     CONSTRAINT smb_publishers_idx UNIQUE (user_id, tablename),
     FOREIGN KEY (user_id) REFERENCES smb_users (id) ON DELETE CASCADE
 );
