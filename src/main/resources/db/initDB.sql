@@ -15,7 +15,7 @@ CREATE TABLE smb_users
     subscriber       BOOL                DEFAULT FALSE NOT NULL,
     publisher        BOOL                DEFAULT FALSE NOT NULL
 );
-CREATE UNIQUE INDEX users_unique_email_idx ON smb_users (login);
+CREATE UNIQUE INDEX users_unique_login_idx ON smb_users (login);
 
 CREATE TABLE smb_subscribers
 (
