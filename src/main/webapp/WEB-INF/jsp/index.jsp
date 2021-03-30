@@ -1,21 +1,17 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<%--
+  Created by IntelliJ IDEA.
+  User: Alexandr.Yakubov
+  Date: 14.03.2021
+  Time: 16:33
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<jsp:include page="fragments/headTag.jsp"/>
+<head>
+    <title>SMB</title>
+</head>
 <body>
-<jsp:include page="fragments/bodyHeader.jsp"/>
-<br>
-<section>
-    <form method="post" action="users">
-        <spring:message code="app.login"/>: <select name="userId">
-        <option value="100000" selected>User</option>
-        <option value="100001">Admin</option>
-    </select>
-        <button type="submit"><spring:message code="common.select"/></button>
-    </form>
-</section>
-<jsp:include page="fragments/footer.jsp"/>
+<h3>REST API using Hibernate/Spring/SpringMVC (or Spring-Boot) without frontend</h3>
+
 </body>
 </html>

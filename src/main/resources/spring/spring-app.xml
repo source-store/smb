@@ -11,5 +11,5 @@
 -->
     <import resource="spring-cache.xml"/>
 
-    <context:component-scan base-package="ru.smb.**.service"/>
+    <context:component-scan base-package="ru.smb.smb.**.service"/>
 </beans>

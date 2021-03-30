@@ -7,10 +7,7 @@ package ru.smb.smb.model;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,51 +15,65 @@ import java.util.Date;
 
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
-@Table(name = "smb_users", uniqueConstraints = {@UniqueConstraint(columnNames = "login", name = "users_unique_login_idx")})
 public class User extends AbstractBaseEntity{
 
-
-    @Column(name = "login", nullable = false, unique = true)
     @NotBlank
     @Size(min = 4, max = 30)
     private String login;
 
-    @Column(name = "password", nullable = false)
     @NotBlank
     @Size(min = 5, max = 100)
     private String password;
 
-    @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
+    @NotBlank
+    @Size(min = 5, max = 30)
+    private String tablename;
+
+    @NotNull
+    private Integer buchsize;
+
+    @NotNull
     private boolean enabled = true;
 
-    @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
     private Date registered = new Date();
 
-    @Column(name = "subscriber", nullable = false, columnDefinition = "bool default null")
     private boolean subscriber = Boolean.parseBoolean(null);
 
-    @Column(name = "publisher", nullable = false, columnDefinition = "bool default null")
     private boolean publisher = Boolean.parseBoolean(null);
 
     public User() {
     }
 
-    public User(Integer id, String login, String password, boolean subscriber, boolean publisher) {
-        this(id, login, password, true, subscriber, publisher);
+    public User(Integer id, String login, String password, String tablename, Integer buchsize, boolean subscriber, boolean publisher) {
+        this(id, login, password, tablename, buchsize, true, subscriber, publisher);
     }
 
     public User(User u) {
-        this(u.id, u.login, u.password, u.enabled, u.subscriber, u.publisher);
+        this(u.id, u.login, u.password, u.tablename, u.buchsize, u.enabled, u.subscriber, u.publisher);
     }
 
-    public User(Integer id, String login, String password, boolean enabled, boolean subscriber, boolean publisher) {
+    public User(Integer id, String login, String password, String tablename, Integer buchsize, boolean enabled, boolean subscriber, boolean publisher) {
         super(id);
         this.login = login;
         this.password = password;
+        this.tablename = tablename;
+        this.buchsize = buchsize;
         this.enabled = enabled;
         this.subscriber = subscriber;
         this.publisher = publisher;
+    }
+
+    public Integer getBuchsize() {
+        return buchsize;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getTablename() {
+        return tablename;
     }
 
     public void setLogin(String login) {
