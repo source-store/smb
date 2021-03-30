@@ -19,6 +19,7 @@ CREATE UNIQUE INDEX users_unique_login_idx ON smb_users (login);
 
 CREATE TABLE smb_subscribers
 (
+    id               INTEGER PRIMARY KEY DEFAULT nextval('smb_seq'),
     user_id          INTEGER  NOT NULL,
     tablename        VARCHAR  NOT NULL,
     starttime        TIME DEFAULT NULL,
@@ -29,6 +30,7 @@ CREATE TABLE smb_subscribers
 
 CREATE TABLE smb_publishers
 (
+    id               INTEGER PRIMARY KEY DEFAULT nextval('smb_seq'),
     user_id          INTEGER NOT NULL,
     tablename        VARCHAR NOT NULL,
     starttime        TIME DEFAULT NULL,
