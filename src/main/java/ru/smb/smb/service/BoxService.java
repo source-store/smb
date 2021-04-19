@@ -25,6 +25,10 @@ public class BoxService {
         return list;
     }
 
+    public void createBox(User user) {
+        repository.createBox(user);
+    }
+
     public void putToBox(List<SmbBox> lists, User user) {
         repository.putToBox(lists, user);
     }

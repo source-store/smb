@@ -1,4 +1,4 @@
-package ru.smb.smb.web.json;
+package ru.smb.smb.control.json;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -1,4 +1,4 @@
-package ru.smb.smb.web.json;
+package ru.smb.smb.control.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectReader;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectReader;
 import java.io.IOException;
 import java.util.List;
 
-import static ru.smb.smb.web.json.JacksonObjectMapper.getMapper;
+import static ru.smb.smb.control.json.JacksonObjectMapper.getMapper;
 
 public class JsonUtil {
 

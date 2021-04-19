@@ -1,4 +1,4 @@
-package ru.smb.smb.web.json;
+package ru.smb.smb.control;
 
 /*
  * @autor Alexandr.Yakubov
@@ -13,17 +13,9 @@ import ru.smb.smb.service.UserService;
 @Controller
 public class RootRestController {
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private BoxService boxService;
-
     @GetMapping("/")
     public String root() {
         return "index";
     }
-
-
 
 }
