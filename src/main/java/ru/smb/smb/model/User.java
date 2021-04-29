@@ -22,14 +22,17 @@ import java.util.Set;
 public class User extends AbstractBaseEntity{
 
     @NotBlank
+    @NotNull
     @Size(min = 4, max = 30)
     private String login;
 
     @NotBlank
+    @NotNull
     @Size(min = 5, max = 100)
     private String password;
 
     @NotBlank
+    @NotNull
     @Size(min = 5, max = 30)
     private String tablename;
 
@@ -104,6 +107,14 @@ public class User extends AbstractBaseEntity{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setTablename(String tablename) {
+        this.tablename = tablename;
+    }
+
+    public void setBuchsize(Integer buchsize) {
+        this.buchsize = buchsize;
     }
 
     public void setEnabled(boolean enabled) {

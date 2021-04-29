@@ -36,7 +36,7 @@ public class JdbcBoxRepository implements BoxRepository {
 
     @Override
     public List<SmbBox> getFromBox(User user) {
-        return jdbcTemplate.query("SELECT * FROM " + user.getTablename() + " ORDER BY id DESC limit ?", ROW_MAPPER, user.getBuchsize());
+        return jdbcTemplate.query("SELECT * FROM ut_" + user.getTablename() + " ORDER BY id DESC limit "+user.getBuchsize(), ROW_MAPPER);
     }
 
     @Override
