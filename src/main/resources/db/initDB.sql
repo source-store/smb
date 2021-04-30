@@ -40,9 +40,7 @@ CREATE TABLE smb_box
     id               INTEGER PRIMARY KEY DEFAULT nextval(' smb_seq'),
     tablename        VARCHAR(30)	 NOT NULL,
     box              VARCHAR             NOT NULL,
-    registered       TIMESTAMP           DEFAULT now() NOT NULL,
-    starttime        TIMESTAMP           DEFAULT NULL,
-    endtime          TIMESTAMP           DEFAULT NULL
+    registered       TIMESTAMP           DEFAULT now() NOT NULL
 );
 
 
@@ -53,9 +51,7 @@ CREATE TABLE ut_login1
     id               INTEGER PRIMARY KEY DEFAULT nextval(' ut_login1_seq'),
     tablename        VARCHAR(30)	 NOT NULL,
     box              VARCHAR             NOT NULL,
-    registered       TIMESTAMP           DEFAULT now() NOT NULL,
-    starttime        TIMESTAMP           DEFAULT NULL,
-    endtime          TIMESTAMP           DEFAULT NULL
+    registered       TIMESTAMP           DEFAULT now() NOT NULL
 );
 
 CREATE SEQUENCE ut_login2_seq START WITH 100000;
@@ -65,7 +61,5 @@ CREATE TABLE ut_login2
     id               INTEGER PRIMARY KEY DEFAULT nextval(' ut_login2_seq'),
     tablename        VARCHAR(30)	 NOT NULL,
     box              VARCHAR             NOT NULL,
-    registered       TIMESTAMP           DEFAULT now() NOT NULL,
-    starttime        TIMESTAMP           DEFAULT NULL,
-    endtime          TIMESTAMP           DEFAULT NULL
+    registered       TIMESTAMP           DEFAULT now() NOT NULL
 );

@@ -25,32 +25,16 @@ public class SmbBoxTo implements Serializable {
     @Size(min = 5, max = 30)
     private String tablename;
 
-    private Date starttime = new Date();
-
-    private Date endtime = null;
-
     public SmbBoxTo() {
     }
 
-    public SmbBoxTo(String box, String tablename, Date starttime, Date endtime) {
+    public SmbBoxTo(String box) {
         this.box = box;
-        this.tablename = tablename;
-        this.starttime = starttime;
-        this.endtime = endtime;
     }
-
 
     public SmbBoxTo(String box, String tablename) {
         this.box = box;
         this.tablename = tablename;
-    }
-
-    public Date getStarttime() {
-        return starttime;
-    }
-
-    public Date getEndtime() {
-        return endtime;
     }
 
     public void setBox(String box) {
@@ -59,14 +43,6 @@ public class SmbBoxTo implements Serializable {
 
     public void setTablename(String tablename) {
         this.tablename = tablename;
-    }
-
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
-    }
-
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
     }
 
     public static long getSerialVersionUID() {
@@ -86,8 +62,6 @@ public class SmbBoxTo implements Serializable {
         return "SmbBoxTo{" +
                 "box=" + box +
                 ", tablename=" + tablename +
-                ", starttime='" + starttime +
-                ", endtime=" + endtime +
                 '}';
     }
 }

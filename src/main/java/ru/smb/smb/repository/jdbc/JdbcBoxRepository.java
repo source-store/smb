@@ -45,12 +45,10 @@ public class JdbcBoxRepository implements BoxRepository {
     @Override
     @Transactional
     public void putToBox(List<SmbBoxTo> lists, User user) {
-        jdbcTemplate.batchUpdate("INSERT INTO ut_" + user.getTablename() + " (tablename, box, starttime, endtime) VALUES (?, ?, ?, ?)", lists, lists.size(),
+        jdbcTemplate.batchUpdate("INSERT INTO ut_" + user.getTablename() + " (tablename, box) VALUES (?, ?)", lists, lists.size(),
                 (ps, list) -> {
-                    ps.setString(1, list.getTablename());
+                    ps.setString(1, user.getTablename());
                     ps.setString(2, list.getBox());
-                    ps.setDate(3, (Date) list.getStarttime());
-                    ps.setDate(4, (Date) list.getEndtime());
                 });
     }
 
@@ -77,9 +75,7 @@ public class JdbcBoxRepository implements BoxRepository {
                 "    id               INTEGER PRIMARY KEY DEFAULT nextval('" + sequence + "'),\n" +
                 "    tablename        VARCHAR(30)         NOT NULL,\n" +
                 "    box              VARCHAR             NOT NULL,\n" +
-                "    registered       TIMESTAMP           DEFAULT now() NOT NULL,\n" +
-                "    starttime        TIMESTAMP           DEFAULT NULL,\n" +
-                "    endtime          TIMESTAMP           DEFAULT NULL\n" +
+                "    registered       TIMESTAMP           DEFAULT now() NOT NULL\n" +
                 ")");
     }
 

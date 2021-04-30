@@ -31,26 +31,18 @@ public class SmbBox extends AbstractBaseEntity{
     @JsonIgnore
     private Date registered = new Date();
 
-    @JsonIgnore
-    private Date starttime;
-
-    @JsonIgnore
-    private Date endtime;
-
     public SmbBox() {
     }
 
-    public SmbBox(Integer id, String tablename, String box, Date registered, Date starttime, Date endtime) {
+    public SmbBox(Integer id, String tablename, String box, Date registered) {
         super(id);
         this.tablename = tablename;
         this.box = box;
         this.registered = registered;
-        this.starttime = starttime;
-        this.endtime = endtime;
     }
 
     public SmbBox(SmbBox s) {
-        this(s.id, s.tablename, s.box, s.registered, s.starttime, s.endtime);
+        this(s.id, s.tablename, s.box, s.registered);
     }
 
     public void setTablename(String tablename) {
@@ -65,14 +57,6 @@ public class SmbBox extends AbstractBaseEntity{
         this.registered = registered;
     }
 
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
-    }
-
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
-    }
-
     public String getTablename() {
         return tablename;
     }
@@ -85,22 +69,12 @@ public class SmbBox extends AbstractBaseEntity{
         return registered;
     }
 
-    public Date getStarttime() {
-        return starttime;
-    }
-
-    public Date getEndtime() {
-        return endtime;
-    }
-
     @Override
     public String toString() {
         return "SmbBox{" +
                 "id=" + id +
                 ", tablename=" + tablename +
                 ", box=" + box +
-                ", starttime=" + starttime +
-                ", endtime=" + endtime +
                 '}';
     }
 }
