@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ru.smb.smb.model.SmbBox;
 import ru.smb.smb.model.User;
 import ru.smb.smb.repository.BoxRepository;
+import ru.smb.smb.to.SmbBoxTo;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class BoxService {
         repository.createBox(user);
     }
 
-    public void putToBox(List<SmbBox> lists, User user) {
+    public void putToBox(List<SmbBoxTo> lists, User user) {
         repository.putToBox(lists, user);
     }
 

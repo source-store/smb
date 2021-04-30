@@ -4,10 +4,13 @@ package ru.smb.smb.model;
  * @autor Alexandr.Yakubov
  **/
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -15,6 +18,7 @@ public class SmbBox extends AbstractBaseEntity{
 
     @NotNull
     @NotBlank
+    @JsonIgnore
     @Size(min = 5, max = 30)
     private String tablename;
 
@@ -24,10 +28,13 @@ public class SmbBox extends AbstractBaseEntity{
     private String box;
 
     @NotNull
+    @JsonIgnore
     private Date registered = new Date();
 
+    @JsonIgnore
     private Date starttime;
 
+    @JsonIgnore
     private Date endtime;
 
     public SmbBox() {

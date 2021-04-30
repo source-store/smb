@@ -14,8 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.smb.smb.model.SmbBox;
 import ru.smb.smb.model.User;
 import ru.smb.smb.repository.BoxRepository;
+import ru.smb.smb.to.SmbBoxTo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @Repository
@@ -40,8 +43,9 @@ public class JdbcBoxRepository implements BoxRepository {
     }
 
     @Override
-    public void putToBox(List<SmbBox> lists, User user) {
-        jdbcTemplate.batchUpdate("INSERT INTO " + user.getTablename() + " (tablename, box, starttime, endtime) VALUES (?, ?, ?, ?)", lists, lists.size(),
+    @Transactional
+    public void putToBox(List<SmbBoxTo> lists, User user) {
+        jdbcTemplate.batchUpdate("INSERT INTO ut_" + user.getTablename() + " (tablename, box, starttime, endtime) VALUES (?, ?, ?, ?)", lists, lists.size(),
                 (ps, list) -> {
                     ps.setString(1, list.getTablename());
                     ps.setString(2, list.getBox());
@@ -51,8 +55,9 @@ public class JdbcBoxRepository implements BoxRepository {
     }
 
     @Override
+    @Transactional
     public void delFromBox(List<SmbBox> lists, User user) {
-        jdbcTemplate.batchUpdate("delete from " + user.getTablename() + " where id =", lists, lists.size(),
+        jdbcTemplate.batchUpdate("delete from ut_" + user.getTablename() + " where id =?", lists, lists.size(),
                 (ps, list) -> {
                     ps.setInt(1, list.getId());
                 });
@@ -61,6 +66,7 @@ public class JdbcBoxRepository implements BoxRepository {
 
 
     @Override
+    @Transactional
     public void createBox(User user) {
         String table = "ut_" + user.getTablename();
         String sequence = table + "_seq";
