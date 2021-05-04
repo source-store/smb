@@ -16,9 +16,6 @@ import ru.smb.smb.model.User;
 import ru.smb.smb.repository.BoxRepository;
 import ru.smb.smb.to.SmbBoxTo;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 @Repository
@@ -39,7 +36,7 @@ public class JdbcBoxRepository implements BoxRepository {
 
     @Override
     public List<SmbBox> getFromBox(User user) {
-        return jdbcTemplate.query("SELECT * FROM ut_" + user.getTablename() + " ORDER BY id DESC limit "+user.getBuchsize(), ROW_MAPPER);
+        return jdbcTemplate.query("SELECT * FROM ut_" + user.getTablename() + " ORDER BY id DESC limit " + user.getBuchsize(), ROW_MAPPER);
     }
 
     @Override

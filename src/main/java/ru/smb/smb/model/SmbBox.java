@@ -10,11 +10,10 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-public class SmbBox extends AbstractBaseEntity{
+public class SmbBox extends AbstractBaseEntity {
 
     @NotNull
     @NotBlank

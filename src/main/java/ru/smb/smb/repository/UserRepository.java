@@ -4,7 +4,6 @@ package ru.smb.smb.repository;
  * @autor Alexandr.Yakubov
  **/
 
-import ru.smb.smb.model.Role;
 import ru.smb.smb.model.User;
 
 import java.util.List;

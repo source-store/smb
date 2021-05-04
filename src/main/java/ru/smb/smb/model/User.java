@@ -19,7 +19,7 @@ import java.util.Set;
 
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
-public class User extends AbstractBaseEntity{
+public class User extends AbstractBaseEntity {
 
     @NotBlank
     @NotNull

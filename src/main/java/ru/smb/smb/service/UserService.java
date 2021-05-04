@@ -25,7 +25,7 @@ import java.util.List;
 
 @Service("userService")
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class UserService  implements UserDetailsService {
+public class UserService implements UserDetailsService {
     private final UserRepository repository;
     private final BoxRepository boxRepository;
     private final PasswordEncoder passwordEncoder;
