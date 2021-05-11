@@ -26,7 +26,7 @@ public class BoxService {
         return list;
     }
 
-    public void createBox(User user) {
+    public void createBox(User user) throws Exception{
         repository.createBox(user);
     }
 

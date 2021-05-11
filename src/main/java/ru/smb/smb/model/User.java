@@ -4,6 +4,7 @@ package ru.smb.smb.model;
  * @autor Alexandr.Yakubov
  **/
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.util.CollectionUtils;
@@ -42,6 +43,7 @@ public class User extends AbstractBaseEntity {
     @NotNull
     private boolean enabled = true;
 
+    @JsonIgnore
     @NotNull
     private Date registered = new Date();
 
@@ -49,10 +51,9 @@ public class User extends AbstractBaseEntity {
 
     private boolean publisher = Boolean.parseBoolean(null);
 
-
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "user_roles_unique_idx")})
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "user_roles_idx")})
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")

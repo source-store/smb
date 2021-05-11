@@ -37,6 +37,7 @@ public class RestBox {
         try {
             if (resultSmbBox != null && resultSmbBox.size() > 0) {
                 service.delFromBox(resultSmbBox, SecurityUtil.safeGet().getUser());
+//                service.delFromBox(resultSmbBox, SecurityUtil.safeGet().getUser());
             }
         } catch (Exception e) {
             log.error(e.getMessage());

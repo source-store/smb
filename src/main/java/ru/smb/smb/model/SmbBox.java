@@ -17,7 +17,6 @@ public class SmbBox extends AbstractBaseEntity {
 
     @NotNull
     @NotBlank
-    @JsonIgnore
     @Size(min = 5, max = 30)
     private String tablename;
 
@@ -27,7 +26,6 @@ public class SmbBox extends AbstractBaseEntity {
     private String box;
 
     @NotNull
-    @JsonIgnore
     private Date registered = new Date();
 
     public SmbBox() {

@@ -18,22 +18,22 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import ru.smb.smb.AuthorizedUser;
 import ru.smb.smb.model.User;
-import ru.smb.smb.repository.BoxRepository;
 import ru.smb.smb.repository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service("userService")
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {
     private final UserRepository repository;
-    private final BoxRepository boxRepository;
+    private final BoxService boxService;
     private final PasswordEncoder passwordEncoder;
 
 
-    public UserService(UserRepository repository, BoxRepository boxRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository repository, BoxService boxService, PasswordEncoder passwordEncoder) {
         this.repository = repository;
-        this.boxRepository = boxRepository;
+        this.boxService = boxService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -50,25 +50,20 @@ public class UserService implements UserDetailsService {
         return repository.getAll();
     }
 
+    @Transactional
     @CacheEvict(value = "smb_users", allEntries = true)
     public User save(User user) {
-        return repository.save(prepareToSave(user, passwordEncoder));
-    }
-
-    @CacheEvict(value = "smb_users", allEntries = true)
-    public void delete(int id) {
-        repository.delete(id);
-    }
-
-    @CacheEvict(value = "smb_users", allEntries = true)
-    public void create(User user) {
         Assert.notNull(user, "user must not be null");
         Assert.notNull(user.getTablename(), "tablename must not be null");
         Assert.notNull(user.getPassword(), "password must not be null");
-        User check = getByLogin(user.getLogin());
-        Assert.isNull(check, "login alrady used");
-        user.setId(null);
-        save(user);
+        User userCreate = repository.save(prepareToSave(user, passwordEncoder));
+        return userCreate;
+    }
+
+    @Transactional
+    @CacheEvict(value = "smb_users", allEntries = true)
+    public void delete(int id) {
+        repository.delete(id);
     }
 
     @Override

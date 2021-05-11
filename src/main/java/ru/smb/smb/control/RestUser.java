@@ -1,18 +1,20 @@
 package ru.smb.smb.control;
 
 /*
- * @autor Alexandr.Yakubov
+ * @author Alexandr.Yakubov
  **/
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.smb.smb.model.User;
+import ru.smb.smb.service.BoxService;
 import ru.smb.smb.service.UserService;
 
 import javax.validation.Valid;
@@ -29,6 +31,9 @@ public class RestUser {
     @Autowired
     private UserService service;
 
+    @Autowired
+    @Lazy
+    private BoxService boxService;
 
     @GetMapping
     public List<User> getAll() {
@@ -52,6 +57,11 @@ public class RestUser {
     public ResponseEntity<User> createWithLocation(@Valid @RequestBody User user) {
         log.info("createWithLocation user={}", user);
         User created = service.save(user);
+        try {
+            boxService.createBox(created);
+        } catch (Exception e) {
+            log.error("createBox user={}, {}", user, e.getMessage());
+        }
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();
