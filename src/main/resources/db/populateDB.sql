@@ -1,4 +1,5 @@
-DELETE FROM smb_users;
+DELETE
+FROM smb_users;
 ALTER SEQUENCE smb_seq RESTART WITH 100000;
 
 INSERT INTO smb_users (id, login, password, tablename, subscriber, publisher)
