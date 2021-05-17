@@ -37,7 +37,6 @@ public class RestBox {
         try {
             if (resultSmbBox != null && resultSmbBox.size() > 0) {
                 service.delFromBox(resultSmbBox, SecurityUtil.safeGet().getUser());
-//                service.delFromBox(resultSmbBox, SecurityUtil.safeGet().getUser());
             }
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -49,14 +48,10 @@ public class RestBox {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity createWithLocation(@RequestBody List<SmbBoxTo> smbBoxTo) {
-        System.out.printf("12");
         service.putToBox(smbBoxTo, SecurityUtil.safeGet().getUser());
-
         URI uriOfNewListSmbBox = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL).buildAndExpand().toUri();
-
         return ResponseEntity.created(uriOfNewListSmbBox).build();
     }
-
 
 }

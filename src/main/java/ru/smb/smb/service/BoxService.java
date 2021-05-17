@@ -5,6 +5,7 @@ package ru.smb.smb.service;
  **/
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import ru.smb.smb.model.SmbBox;
 import ru.smb.smb.model.User;
 import ru.smb.smb.repository.BoxRepository;
@@ -22,6 +23,7 @@ public class BoxService {
     }
 
     public List<SmbBox> getFromBox(User user) {
+        Assert.isTrue(user.isSubscriber(), "User not access read from the box");
         List<SmbBox> list = repository.getFromBox(user);
         return list;
     }
@@ -31,6 +33,7 @@ public class BoxService {
     }
 
     public void putToBox(List<SmbBoxTo> lists, User user) {
+        Assert.isTrue(user.isPublisher(), "User not access to put in box");
         repository.putToBox(lists, user);
     }
 
