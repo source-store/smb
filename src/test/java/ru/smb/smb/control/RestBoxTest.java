@@ -26,11 +26,11 @@ public class RestBoxTest extends AbstractControllerTest {
     void createWithLocation() throws Exception {
         String bodyJson = "[";
         for (int i = 0; i < 10; i++) {
-            bodyJson = bodyJson + JsonUtil.writeValue(new SmbBoxTo("test2", null));
+            bodyJson = bodyJson + JsonUtil.writeValue(new SmbBoxTo("test1", null));
         }
         bodyJson = bodyJson + "]";
 
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 10; i++) {
             mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(bodyJson.replace("}{", "},{"))
