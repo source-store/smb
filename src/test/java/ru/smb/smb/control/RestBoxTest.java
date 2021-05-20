@@ -19,7 +19,21 @@ import static ru.smb.smb.control.RestBox.REST_URL;
 public class RestBoxTest extends AbstractControllerTest {
 
     @Test
-    void getAll() {
+    void PutAndGetAll() throws Exception {
+
+        mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("[{\"box\":\"messageBox1\"},{\"box\":\"messageBox2\"},{\"box\":\"messageBox3\"},{\"box\":\"messageBox4\"}]")
+                .with(SecurityMockMvcRequestPostProcessors.httpBasic("login2", "login2")))
+                .andDo(print())
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .with(SecurityMockMvcRequestPostProcessors.httpBasic("login2", "login2")))
+                .andDo(print())
+                .andExpect(status().isAccepted());
+
     }
 
     @Test

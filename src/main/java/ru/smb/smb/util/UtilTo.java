@@ -9,7 +9,7 @@ import ru.smb.smb.to.SmbBoxTo;
 
 public class UtilTo {
 
-    public SmbBoxTo SmbBoxConvertSmbBoxTo(SmbBox smbBox) {
+    public SmbBoxTo SmbBoxConvertTo(SmbBox smbBox) {
         return new SmbBoxTo(smbBox.getBox(), smbBox.getTablename());
     }
 

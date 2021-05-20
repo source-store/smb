@@ -35,6 +35,7 @@ public class RestBox {
     private BoxService service;
 
     @GetMapping
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
     public List<SmbBox> getAll() {
         log.info("getAll");
         List<SmbBox> resultSmbBox = service.getFromBox(SecurityUtil.safeGet().getUser());
