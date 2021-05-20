@@ -38,7 +38,6 @@ public class RestBoxTest extends AbstractControllerTest {
                     .andDo(print())
                     .andExpect(status().isCreated());
         }
-
     }
 }
 

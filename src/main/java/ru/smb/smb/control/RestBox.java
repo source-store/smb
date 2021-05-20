@@ -20,6 +20,10 @@ import ru.smb.smb.to.SmbBoxTo;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * GET    /rest/box               get message package (package size setup in user property)
+ * POST   /rest/box               put message in the box user
+ * */
 @RestController
 @RequestMapping(value = RestBox.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestBox {
