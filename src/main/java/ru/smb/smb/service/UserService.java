@@ -27,13 +27,11 @@ import java.util.List;
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {
     private final UserRepository repository;
-    private final BoxService boxService;
     private final PasswordEncoder passwordEncoder;
 
 
-    public UserService(UserRepository repository, BoxService boxService, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
-        this.boxService = boxService;
         this.passwordEncoder = passwordEncoder;
     }
 

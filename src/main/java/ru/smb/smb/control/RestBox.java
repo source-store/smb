@@ -44,9 +44,8 @@ public class RestBox {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-        } finally {
-            return resultSmbBox;
         }
+        return resultSmbBox;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

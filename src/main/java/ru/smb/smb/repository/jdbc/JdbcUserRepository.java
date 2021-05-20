@@ -28,7 +28,7 @@ public class JdbcUserRepository implements UserRepository {
     private final JdbcTemplate jdbcTemplate;
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private SimpleJdbcInsert insertUser;
+    SimpleJdbcInsert insertUser;
 
     @Autowired
     public JdbcUserRepository(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
