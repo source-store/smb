@@ -20,14 +20,15 @@ import ru.smb.smb.service.UserService;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+
 /**
-* GET    /rest/users                  get all users
-* GET    /rest/users/{id}             get user by id
-* GET    /rest/users/by?login=login   get user by login
-* POST   /rest/users                  create new user
-* PUT    /rest/users/{id}             update user by id
-* DELETE /rest/users/{id}             update user by id
-*/
+ * GET    /rest/users                  get all users
+ * GET    /rest/users/{id}             get user by id
+ * GET    /rest/users/by?login=login   get user by login
+ * POST   /rest/users                  create new user
+ * PUT    /rest/users/{id}             update user by id
+ * DELETE /rest/users/{id}             update user by id
+ */
 @RestController
 @RequestMapping(value = RestUser.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestUser {
