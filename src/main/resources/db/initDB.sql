@@ -18,6 +18,7 @@ CREATE TABLE smb_users
     login      VARCHAR(255)                      NOT NULL,
     password   VARCHAR(255)                      NOT NULL,
     tablename  VARCHAR(30)                       NOT NULL,
+    path       VARCHAR(200)                      NOT NULL,
     registered TIMESTAMP           DEFAULT now() NOT NULL,
     buchsize   INTEGER             DEFAULT 10    NOT NULL,
     enabled    BOOL                DEFAULT TRUE  NOT NULL,

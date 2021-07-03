@@ -74,7 +74,7 @@ public class JdbcUserRepository implements UserRepository {
             insertRoles(user);
         } else {
             if (namedParameterJdbcTemplate.update("""
-                       UPDATE smb_users SET login=:login, password=:password,
+                       UPDATE smb_users SET login=:login, password=:password, path=:path, 
                        tablename=:tablename, subscriber=:subscriber, publisher=:publisher WHERE id=:id
                     """, parameterSource) == 0) {
                 return null;

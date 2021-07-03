@@ -37,6 +37,11 @@ public class User extends AbstractBaseEntity {
     @Size(min = 5, max = 30)
     private String tablename;
 
+    @NotBlank
+    @NotNull
+    @Size(min = 1, max = 200)
+    private String path;
+
     @NotNull
     private Integer buchsize;
 
@@ -62,15 +67,15 @@ public class User extends AbstractBaseEntity {
     public User() {
     }
 
-    public User(Integer id, String login, String password, String tablename, Integer buchsize, boolean subscriber, boolean publisher, Role role, Role... roles) {
-        this(id, login, password, tablename, buchsize, true, subscriber, publisher, EnumSet.of(role, roles));
+    public User(Integer id, String login, String password, String tablename, Integer buchsize, boolean subscriber, boolean publisher, String path, Role role, Role... roles) {
+        this(id, login, password, tablename, buchsize, true, subscriber, publisher, EnumSet.of(role, roles), path);
     }
 
     public User(User u) {
-        this(u.id, u.login, u.password, u.tablename, u.buchsize, u.enabled, u.subscriber, u.publisher, u.getRoles());
+        this(u.id, u.login, u.password, u.tablename, u.buchsize, u.enabled, u.subscriber, u.publisher, u.getRoles(), u.path);
     }
 
-    public User(Integer id, String login, String password, String tablename, Integer buchsize, boolean enabled, boolean subscriber, boolean publisher, Collection<Role> roles) {
+    public User(Integer id, String login, String password, String tablename, Integer buchsize, boolean enabled, boolean subscriber, boolean publisher, Collection<Role> roles, String path) {
         super(id);
         this.login = login;
         this.password = password;
@@ -80,6 +85,7 @@ public class User extends AbstractBaseEntity {
         this.subscriber = subscriber;
         this.publisher = publisher;
         setRoles(roles);
+        this.path = path;
     }
 
     public Integer getBuchsize() {
@@ -152,6 +158,14 @@ public class User extends AbstractBaseEntity {
 
     public boolean isPublisher() {
         return publisher;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     @Override
