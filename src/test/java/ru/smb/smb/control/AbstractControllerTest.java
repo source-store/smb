@@ -16,6 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.annotation.PostConstruct;
+import ru.smb.smb.service.RequestService;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
@@ -31,6 +32,9 @@ public class AbstractControllerTest {
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();
 
     protected MockMvc mockMvc;
+
+    @Autowired
+    protected RequestService requestService;
 
     @Autowired
     private WebApplicationContext webApplicationContext;

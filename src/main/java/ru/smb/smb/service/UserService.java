@@ -54,6 +54,7 @@ public class UserService implements UserDetailsService {
         Assert.notNull(user, "user must not be null");
         Assert.notNull(user.getTablename(), "tablename must not be null");
         Assert.notNull(user.getPassword(), "password must not be null");
+        Assert.notNull(user.getPath(), "path must not be null");
         User userCreate = repository.save(prepareToSave(user, passwordEncoder));
         return userCreate;
     }

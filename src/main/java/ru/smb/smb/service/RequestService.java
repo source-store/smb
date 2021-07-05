@@ -14,16 +14,19 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import ru.smb.smb.model.User;
 import ru.smb.smb.repository.UserRepository;
 
-@Component
+@Service
 public class RequestService {
 
   @Autowired
   private UserRepository userRepository;
 
+  public RequestService(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
 
   private String username;
   private String password;
@@ -31,6 +34,7 @@ public class RequestService {
   public void setUsername(String username) {
     this.username = username;
   }
+
   public void setPassword(String password) {
     this.password = password;
   }
@@ -42,12 +46,9 @@ public class RequestService {
         return new PasswordAuthentication(username, password.toCharArray());
       }
     };
-
-//    User user = userRepository.getByLogin(username);
-
     try {
-//      URL url = new URL(user.getUser().getPath()+postPath);
-      URL url = new URL("http://localhost:8080/smb/rest/box");
+      User user = userRepository.getByLogin(username);
+      URL url = new URL(user.getPath() + postPath);
       System.out.println(url.getHost());
 
       url.toString().replace(url.getPath(), "");
@@ -55,35 +56,24 @@ public class RequestService {
 
       for (Map.Entry<String, List<String>> pair : params.entrySet()) {
         for (String str : pair.getValue()) {
-          if (postData.length() == 0) {
-            postData.append("[{");
-          } else {
-            postData.append(",{");
-          }
-          postData.append('\"' + pair.getKey() + '\"');
-          postData.append(':');
-          postData.append('\"' + str + '\"');
-          postData.append('}');
+          postDataAppend(postData, pair.getKey(), str);
         }
       }
-      if (postData.length() > 0) {
-        postData.append("]");
-      }
-      System.out.println(postData);
-      byte[] postDataBytes = postData.toString().getBytes("UTF-8");
-
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setRequestMethod("POST");
       conn.setAuthenticator(auth);
       conn.setRequestProperty("Content-Type", "application/json");
-      conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
       conn.setDoOutput(true);
-      conn.getOutputStream().write(postDataBytes);
+      if (postData.length() > 0) {
+        postData.append("]");
+        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+        conn.getOutputStream().write(postDataBytes);
+      }
 
       if (conn.getResponseCode() >= 300) {
         throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
       }
-
       BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
       String output;
       System.out.println("Server output .... \n");
@@ -98,5 +88,16 @@ public class RequestService {
 
   }
 
+  private void postDataAppend(StringBuilder postData, String key, String date) {
+    if (postData.length() == 0) {
+      postData.append("[{");
+    } else {
+      postData.append(",{");
+    }
+    postData.append('\"' + key + '\"');
+    postData.append(':');
+    postData.append('\"' + date + '\"');
+    postData.append('}');
+  }
 
 }
