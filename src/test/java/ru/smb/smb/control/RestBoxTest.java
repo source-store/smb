@@ -6,7 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.util.Assert;
 import ru.smb.smb.TestUtil;
 import ru.smb.smb.control.json.JsonUtil;
 import ru.smb.smb.model.SmbBox;

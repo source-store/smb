@@ -1,5 +1,10 @@
 package ru.smb.smb.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static ru.smb.smb.control.RestBox.REST_URL;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +20,7 @@ import ru.smb.smb.control.AbstractControllerTest;
 class RequestServiceTest extends AbstractControllerTest {
 
   @Test
-  void postRequest() {
+  void postRequest() throws IOException {
     Map<String, List<String>> params = new HashMap<>();
     List<String> list = new ArrayList<>();
     params.put("box", list);
@@ -27,6 +32,8 @@ class RequestServiceTest extends AbstractControllerTest {
 
     requestService.setUsername("login2");
     requestService.setPassword("login2");
-    requestService.PostRequest(params, "/smb/rest/box");
+    HttpURLConnection httpURLConnection = requestService.PostRequest(params, "/smb" + REST_URL);
+
+    assertEquals(httpURLConnection.getResponseCode(), 201);
   }
 }

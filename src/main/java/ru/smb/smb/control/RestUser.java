@@ -40,7 +40,6 @@ public class RestUser {
     private UserService service;
 
     @Autowired
-    @Lazy
     private BoxService boxService;
 
     @GetMapping

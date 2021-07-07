@@ -29,7 +29,7 @@ import java.util.List;
 public class RestBox {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    static final String REST_URL = "/rest/box";
+    public static final String REST_URL = "/rest/box";
 
     @Autowired
     private BoxService service;
