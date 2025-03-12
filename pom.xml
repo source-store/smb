@@ -315,7 +315,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jdbc</artifactId>
+      <artifactId>tomcat </artifactId>
       <version>${tomcat.version}</version>
       <scope>provided</scope>
     </dependency>
